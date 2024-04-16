@@ -38,7 +38,7 @@ def _gen_and_save_one(prior: gp.Prior, seed: int) -> ndarray:
     start_time = time()
     gt = gp.sample_prior(numpy_rng, prior)
     duration = time() - start_time
-    print(f"Generated grouth truth with seed {seed} in {duration:.2f} seconds")
+    print(f"Generated ground truth with seed {seed} in {duration:.2f} seconds")
 
     DIRECTORY.mkdir(exist_ok=True, parents=True)
     output_path = DIRECTORY / f"{_get_name(prior, seed)}.npy"
