@@ -8,6 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "~3.11"
 jax = { extras = ["cuda12_pip"], version = "0.4.25" }
+jaxlib = { extras = ["cuda12_pip"], version = "0.4.25" }
 numpy = "^1.24.3"
 scipy = "^1.10.1"
 tqdm = "^4.65.0"
