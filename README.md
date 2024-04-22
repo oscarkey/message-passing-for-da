@@ -4,7 +4,7 @@ A message passing algorithm, implemented in JAX, for approximately computing the
 It can scale to fields with millions of variables.
 The algorithm is designed for data assimilation in weather models, which is the process of updating a model of the atmosphere based on observations.
 
-For more details, see our accompanying paper [Scalable Data Assimilation with Message Passing; Oscar Key*, So Takao*, Daniel Giles*, Marc Peter Deisenroth](url).
+For more details, see our accompanying paper [Scalable Data Assimilation with Message Passing; Oscar Key*, So Takao*, Daniel Giles*, Marc Peter Deisenroth](https://arxiv.org/abs/2404.12968).
 
 In this repository we include:
 - Tools for defining a Matérn Gaussian process prior on a rectangle or sphere and generating a corresponding GMRF prior
