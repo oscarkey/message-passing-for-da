@@ -99,19 +99,39 @@ def _print_results(df: pd.DataFrame) -> None:
 
     df = df.sort_values(by=["grid size", "obs fraction", "method"], key=sort_key)
 
-    df = df.replace({"inla": "INLA", "map_lbfgs": "3D-Var", "mp_multigrid": "ours"})
+    df = df.replace({"inla": "INLA", "map_lbfgs": "3D-Var", "mp_multigrid": "MP"})
     df = df.groupby(["grid size", "obs fraction", "method"], sort=False).aggregate(
         {"duration": ["mean"], "rmse": ["mean"]}
     )
-    df["RMSE"] = df["rmse"].apply(lambda row: f"{row['mean']:.2f}", axis="columns")
+    df["RMSE"] = df["rmse"].apply(lambda row: f"{row['mean']:.3f}", axis="columns")
     df["duration (seconds)"] = df["duration"].apply(
         lambda row: f"{row['mean']:.0f}", axis="columns"
     )
     df = df.drop(["duration", "rmse"], axis="columns")
     df.columns = ["".join(x) for x in df.columns.to_flat_index()]
     df = df.reset_index().pivot(index=["grid size", "obs fraction"], columns=["method"])
-    df = df.reindex(columns=df.columns.reindex(["INLA", "3D-Var", "ours"], level=1)[0])
-    df.index = df.index.map(lambda x: (x[0], f"{x[1] * 100:.0f}\%"))
+
+    def bold_smaller(subrow):
+        if float(subrow["3D-Var"]) < float(subrow["MP"]):
+            subrow["3D-Var"] = f"\\textbf{{{subrow['3D-Var']}}}"
+        elif float(subrow["3D-Var"]) > float(subrow["MP"]):
+            subrow["MP"] = f"\\textbf{{{subrow['MP']}}}"
+        return subrow
+
+    def bold_smallers(row):
+        try:
+            row["RMSE"] = bold_smaller(row["RMSE"])
+            row["duration (seconds)"] = bold_smaller(row["duration (seconds)"])
+        except KeyError:
+            pass
+        return row
+
+    df = df.apply(bold_smallers, axis=1)
+
+    df = df.reindex(columns=df.columns.reindex(["INLA", "3D-Var", "MP"], level=1)[0])
+    df.index = df.index.map(
+        lambda x: (f"${x[0]} \\times {x[0]}$", f"{x[1] * 100:.0f}\%")
+    )
     print(df)
     print(df.to_latex())
 
