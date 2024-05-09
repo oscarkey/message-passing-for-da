@@ -31,7 +31,8 @@ As our message passing implementation is specialised to GMRFs, we can make some 
 To run an experiment: `python src/experiments/[script].py`, where `script` is:
 - Try out the methods on simulated data: `mp_demo.py`, `mp_multigrid_demo.py`, `threedvar_demo.py`, `inla_demo.py`
 - Reproduce Table 1: `comparison_table.py`
-- Reproduce the grid search: `lr_c_grid_search.py`
+- Reproduce the grid search over the message passing learning rate and `c` hyperparameters: `lr_c_grid_search.py`
+- Reproduce the grid search over the early stopping hyperparameters for message passing and 3D-Var: `early_stopping_search.py`
 
 The experiments on spherical temperature data are in `temperature.py`.
 Unfortunately they depend on data from the Met Office's Unified Model which we are unable to include in this repository.

@@ -9,8 +9,12 @@ from jaxopt import LBFGS
 from damp import gp
 from damp.jax_utils import jit
 
+TOL = 0.001
 
-def run_optimizer(rng: Array, prior: gp.Prior, obs: gp.Obs, obs_noise: float) -> Array:
+
+def run_optimizer(
+    rng: Array, prior: gp.Prior, obs: gp.Obs, obs_noise: float, tolerance: float = TOL
+) -> Array:
     x_init = 0.1 * jax.random.normal(rng, (prior.precision.shape[0],))
     prior_mean = jnp.zeros_like(x_init)
     # We use batched CSR format as this offers fast matrix-vector products.
@@ -28,7 +32,7 @@ def run_optimizer(rng: Array, prior: gp.Prior, obs: gp.Obs, obs_noise: float) ->
         [(y - 1) + (x - 1) * prior.interior_shape.height for (x, y), _ in obs]
     )
 
-    opt = _create_optimizer()
+    opt = _create_optimizer(tolerance)
     x_final, _ = opt.run(
         x_init, prior_mean, prior_precision, obs_vals, obs_idxs, obs_noise
     )
@@ -36,8 +40,8 @@ def run_optimizer(rng: Array, prior: gp.Prior, obs: gp.Obs, obs_noise: float) ->
 
 
 @functools.cache
-def _create_optimizer() -> LBFGS:
-    return LBFGS(fun=_objective)
+def _create_optimizer(tolerance: float) -> LBFGS:
+    return LBFGS(fun=_objective, tol=tolerance)
 
 
 @jit

@@ -12,6 +12,7 @@ from damp.jax_utils import jit
 from damp.message_passing import Config, Edges, Marginals
 
 DEFAULT_MAX_ITERATIONS = 10_000
+DEFAULT_STOPPING_THRESHOLD = 0.0001
 
 ObsMatrix = ndarray
 
@@ -21,6 +22,7 @@ def run_rect(
     obs: Obs,
     obs_noise: float,
     min_grid_size: int = 32,
+    stopping_threshold: float = DEFAULT_STOPPING_THRESHOLD,
     max_iterations: int = DEFAULT_MAX_ITERATIONS,
     **config_kwargs,
 ) -> list[tuple[Shape, Marginals]]:
@@ -43,7 +45,14 @@ def run_rect(
         for shape in _build_level_shapes(min_grid_size, target_shape)[:-1]
     ]
     all_level_priors = priors_except_target + [prior]
-    return _run(all_level_priors, obs, obs_noise, max_iterations, **config_kwargs)
+    return _run(
+        all_level_priors,
+        obs,
+        obs_noise,
+        stopping_threshold,
+        max_iterations,
+        **config_kwargs,
+    )
 
 
 def run_sphere(
@@ -76,6 +85,7 @@ def _run(
     level_priors: list[Prior],
     obs: Obs,
     obs_noise: float,
+    stopping_threshold: float,
     max_iterations: int,
     **config_kwargs,
 ) -> list[tuple[Shape, Marginals]]:
@@ -96,7 +106,7 @@ def _run(
             config,
             edges,
             n_iterations=max_iterations,
-            early_stopping_threshold=0.0001,
+            early_stopping_threshold=stopping_threshold,
         )
         level_marginals = Marginals(
             mean=level_marginals.mean.reshape(prior.interior_shape),
