@@ -1,8 +1,8 @@
 """Simulates ground truth data from a GP prior, and caches the results."""
 import itertools
+from collections.abc import Iterator
 from pathlib import Path
 from time import time
-from typing import Iterator
 
 import numpy as np
 from numpy import ndarray

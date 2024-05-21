@@ -1,5 +1,6 @@
+from collections.abc import Iterator
 from functools import partial
-from typing import Any, Iterator
+from typing import Any
 
 import jax.numpy as jnp
 import numpy as np

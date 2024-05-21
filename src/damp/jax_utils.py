@@ -1,5 +1,6 @@
+from collections.abc import Iterable
 from math import ceil
-from typing import Callable, Iterable, TypeVar, cast
+from typing import Callable, TypeVar, cast
 
 import chex
 import jax
