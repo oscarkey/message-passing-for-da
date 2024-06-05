@@ -133,7 +133,7 @@ def _get_observations(
     obs_noise: float,
 ) -> Obs:
     def get():
-        for lat, lon in zip(sat_lats, sat_lons):
+        for lat, lon in zip(sat_lats, sat_lons, strict=True):
             x = np.argmin(abs(lat - lats))
             y = np.argmin(abs(lon - lons))
             gt = zero_mean_ground_truth[

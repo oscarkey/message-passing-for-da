@@ -76,7 +76,7 @@ def run_sphere(
     # shape.
     priors_except_target = [
         gp.get_prior_sphere(shape, lon[::ratio], lat[::ratio])
-        for shape, ratio in zip(levels[:-1], ratios[:-1])
+        for shape, ratio in zip(levels[:-1], ratios[:-1], strict=True)
     ]
     all_level_priors = priors_except_target + [prior]
     return _run(all_level_priors, obs, obs_noise, max_iterations, **config_kwargs)
@@ -97,7 +97,9 @@ def _run(
     marginals = []
     edges = message_passing.get_initial_edges(level_configs[0].graph)
 
-    for level_i, (prior, config) in enumerate(zip(level_priors, level_configs)):
+    for level_i, (prior, config) in enumerate(
+        zip(level_priors, level_configs, strict=True)
+    ):
         print(
             f"Running Message Passing for level {level_i} "
             f"({prior.shape.width} x {prior.shape.height})"
@@ -124,7 +126,7 @@ def _run(
                 level_priors[level_i + 1].interior_shape,
             )
 
-    return [(prior.shape, m) for prior, m in zip(level_priors, marginals)]
+    return [(prior.shape, m) for prior, m in zip(level_priors, marginals, strict=True)]
 
 
 def _get_level_configs(

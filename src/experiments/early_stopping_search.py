@@ -148,11 +148,11 @@ def plot_pareto(
             markersize=8,
             label=f"{param_name} = {threshold:.0e}",
         )
-        for threshold, marker_style in zip(thresholds, marker_styles)
+        for threshold, marker_style in zip(thresholds, marker_styles, strict=True)
     ]
     fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(plotting.FULL_WIDTH, 2.6))
     plt.title(f"{method}")
-    for i, (grid, ax) in enumerate(zip(grid_sizes, axes)):
+    for i, (grid, ax) in enumerate(zip(grid_sizes, axes, strict=True)):
         ax.title.set_text(f"${grid} \\times {grid}$")
         for obs_index, obs in enumerate(obs_fractions):
             for index, stopping in enumerate(thresholds):
