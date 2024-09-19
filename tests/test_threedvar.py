@@ -17,7 +17,7 @@ def test__run_optimizer__does_not_crash() -> None:
         obs_noise=obs_noise,
     )
 
-    rng = jax.random.key(seed=23142834)
+    rng = jax.random.key(seed=123456)
     rng, rng_input = jax.random.split(rng)
 
     mean = threedvar.run_optimizer(rng_input, prior, obs, obs_noise)

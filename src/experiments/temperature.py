@@ -64,7 +64,7 @@ class ThreeDVar:
         lons: ndarray,
     ) -> Array:
         return threedvar.run_optimizer(
-            jax.random.key(seed=2343499), prior, obs, obs_noise
+            jax.random.key(seed=123456), prior, obs, obs_noise
         )
 
 

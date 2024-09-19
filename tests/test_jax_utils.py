@@ -23,7 +23,7 @@ def test__tree_concatenate__correctly_concatenates_leaves():
 
 
 def test__batch_vmap__result_same_as_single_vmap():
-    rng = jax.random.key(seed=1231245)
+    rng = jax.random.key(seed=123456)
     xs = jax.random.normal(rng, shape=(100, 20))
 
     def f(xs: Array) -> tuple[Array, Array]:

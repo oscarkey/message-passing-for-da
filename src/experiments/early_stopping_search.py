@@ -53,7 +53,7 @@ class ThreeDVar:
         early_stopping_threshold: float,
     ) -> Array:
         return threedvar.run_optimizer(
-            jax.random.key(seed=2343499),
+            jax.random.key(seed=123456),
             prior,
             obs,
             obs_noise,

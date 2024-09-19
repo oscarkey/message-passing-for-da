@@ -23,7 +23,7 @@ def main() -> None:
         obs_noise=obs_noise,
     )
 
-    rng = jax.random.key(seed=23142834)
+    rng = jax.random.key(seed=123456)
     rng, rng_input = jax.random.split(rng)
 
     start = time()
