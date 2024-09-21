@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "damp"
-version = "0.1.0"
+version = "0.1.2"
 description = ""
 authors = ["Oscar Key <oscar.t.key@gmail.com>", "Daniel Giles", "So Takao"]
 readme = "README.md"
