@@ -22,10 +22,15 @@ As our message passing implementation is specialised to GMRFs, we can make some 
 
 
 ## To set up the environment
+### Option 1: install dependencies manually
 - Install Python 3.11 (e.g. using [pyenv](https://github.com/pyenv/pyenv))
 - Install [Poetry](https://python-poetry.org/)
+- If you'd like to use the R-INLA baseline: install [R](https://www.r-project.org/) and [R-INLA](https://www.r-inla.org/)
 - Run `poetry install`, or `poetry install --with plotting` to also include the dependencies required for plotting
-- Optionally: install R and R-INLA if you'd like to run the baseline experiments
+
+### Option 2: use the Docker image
+You can either build it from `Dockerfile`, or use our [pre-built image on Docker Hub]().
+
 
 ## Experiments
 To run an experiment: `python src/experiments/[script].py`, where `script` is:
