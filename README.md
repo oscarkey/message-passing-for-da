@@ -29,7 +29,7 @@ As our message passing implementation is specialised to GMRFs, we can make some 
 - Run `poetry install`, or `poetry install --with plotting` to also include the dependencies required for plotting
 
 ### Option 2: use the Docker image
-You can either build it from `Dockerfile`, or use our [pre-built image on Docker Hub]().
+You can either build it from `Dockerfile`, or use our pre-built image: [docker.io/oscarkey/message-passing-da](https://hub.docker.com/repository/docker/oscarkey/message-passing-da).
 
 
 ## Experiments
