@@ -21,4 +21,5 @@ COPY . /code
 RUN poetry install --with plotting
 
 ENV SHELL=/bin/bash
-CMD ["poetry", "shell"]
+# We need to cd here to be compatible with Apptainer, which ignores WORKDIR directives.
+CMD cd /code && poetry shell
