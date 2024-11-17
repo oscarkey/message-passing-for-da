@@ -8,6 +8,9 @@ RUN echo "install.packages('INLA',verison='24.6.27',repos=c(getOption('repos'),I
 RUN R --no-save < install.R
 
 RUN pip install poetry==1.8.4
+ENV POETRY_CONFIG_DIR=/pypoetry/config
+ENV POETRY_DATA_DIR=/pypoetry/data
+ENV POETRY_CACHE_DIR=/pypoetry/cache
 
 WORKDIR /code
 COPY poetry.lock pyproject.toml /code/
