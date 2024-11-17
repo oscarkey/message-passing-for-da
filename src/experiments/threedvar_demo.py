@@ -33,13 +33,15 @@ def main() -> None:
     end = time()
     print(f"Took {end-start:.2f}s")
 
-    n_rows = 2
-    fig, axes = plt.subplots(n_rows, ncols=2, figsize=(4, n_rows * 1.5), squeeze=False)
+    fig, (gt_ax, pred_ax) = plt.subplots(ncols=2, figsize=(8, 3))
     vmin = ground_truth.min()
     vmax = ground_truth.max()
-    axes[0, 0].imshow(ground_truth, vmin=vmin, vmax=vmax)
-    axes[-1, 0].imshow(result, vmin=vmin, vmax=vmax)
-    for ax in axes.flatten():
+    gt_ax.imshow(ground_truth, vmin=vmin, vmax=vmax)
+    pred_ax.imshow(result, vmin=vmin, vmax=vmax)
+
+    gt_ax.set_title("ground truth", fontsize=10)
+    pred_ax.set_title("predicted mean", fontsize=10)
+    for ax in (gt_ax, pred_ax):
         ax.set_xticks([])
         ax.set_yticks([])
     plt.tight_layout()

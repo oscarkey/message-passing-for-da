@@ -26,21 +26,23 @@ def main() -> None:
     config = Config.from_posterior(posterior, c=-2.0, lr=0.7)
     initial_edges = message_passing.get_initial_edges(config.graph)
 
-    fig, axes = plt.subplots(nrows=1, ncols=3, figsize=(4, 2))
-
     edges, marginals = message_passing.iterate(
         config, initial_edges, n_iterations=50_000
     )
 
+    fig, (gt_ax, mean_ax, std_ax) = plt.subplots(ncols=3, figsize=(8, 3))
     vmin = ground_truth.min()
     vmax = ground_truth.max()
-    axes[0].imshow(ground_truth.T, vmin=vmin, vmax=vmax)
-    axes[1].imshow(marginals.mean.reshape(prior.interior_shape).T, vmin=vmin, vmax=vmax)
-    axes[2].imshow(marginals.std.reshape(prior.interior_shape).T)
+    gt_ax.imshow(ground_truth.T, vmin=vmin, vmax=vmax)
+    mean_ax.imshow(marginals.mean.reshape(prior.interior_shape).T, vmin=vmin, vmax=vmax)
+    std_ax.imshow(marginals.std.reshape(prior.interior_shape).T)
     obs_xs, obs_ys = zip(*[(x - 1, y - 1) for (x, y), val in obs], strict=True)
-    axes[2].scatter(obs_xs, obs_ys, color="red", s=1)
+    std_ax.scatter(obs_xs, obs_ys, color="red", s=1)
 
-    for ax in axes.flatten():
+    gt_ax.set_title("ground truth", fontsize=10)
+    mean_ax.set_title("predicted mean", fontsize=10)
+    std_ax.set_title("predicted std", fontsize=10)
+    for ax in (gt_ax, mean_ax, std_ax):
         ax.set_xticks([])
         ax.set_yticks([])
 

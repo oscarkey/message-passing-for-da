@@ -20,13 +20,21 @@ def main() -> None:
 
     pred_means, pred_stds = inla_bridge.run(prior, obs)
 
-    fig, axes = plt.subplots(nrows=1, ncols=3, figsize=(10, 5))
+    fig, (gt_ax, mean_ax, std_ax) = plt.subplots(ncols=3, figsize=(10, 3))
     vmin = ground_truth.min()
     vmax = ground_truth.max()
-    axes[0].imshow(ground_truth.T, vmin=vmin, vmax=vmax)
-    axes[1].imshow(pred_means.T, vmin=vmin, vmax=vmax)
-    axes[2].imshow(pred_stds.T)
+    gt_ax.imshow(ground_truth.T, vmin=vmin, vmax=vmax)
+    mean_ax.imshow(pred_means.T, vmin=vmin, vmax=vmax)
+    std_ax.imshow(pred_stds.T)
     obs_xs, obs_ys = zip(*[(x - 1, y - 1) for (x, y), val in obs], strict=True)
+    std_ax.scatter(obs_xs, obs_ys, color="red", s=1)
+
+    gt_ax.set_title("ground truth", fontsize=10)
+    mean_ax.set_title("predicted mean", fontsize=10)
+    std_ax.set_title("predicted std", fontsize=10)
+    for ax in (gt_ax, mean_ax, std_ax):
+        ax.set_xticks([])
+        ax.set_yticks([])
 
     plt.tight_layout()
     plot_dir = Path("plots")
