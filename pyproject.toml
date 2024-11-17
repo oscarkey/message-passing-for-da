@@ -30,6 +30,7 @@ pytest-env = "^0.8.2"
 types-tqdm = "^4.66.0.2"
 pytest-xdist = "^3.3.1"
 networkx = "^3.1"
+cffconvert = "^2.0.0"
 
 [tool.poetry.group.plotting.dependencies]
 xarray = "^0.20.1"

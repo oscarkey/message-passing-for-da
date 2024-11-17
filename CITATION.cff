@@ -1,0 +1,41 @@
+cff-version: 1.2.0
+authors:
+  - family-names: Key
+    given-names: Oscar
+    orcid: https://orcid.org/0009-0009-1357-471X
+  - family-names: Takao
+    given-names: So
+  - family-names: Giles
+    given-names: Daniel
+    orcid: https://orcid.org/0000-0002-3668-1851
+  - family-names: Deisenroth
+    given-names: Marc Peter
+    orcid: https://orcid.org/0000-0003-1503-680X
+title: "Message Passing for Data Assimilation"
+abstract: "A JAX message passing algorithm aimed at data assimilation"
+license: MIT
+identifiers:
+  - description: "Snapshots of released versions"
+    type: doi
+    value: 10.5281/zenodo.13137964
+message: "If you use this software, please cite the associated paper."
+preferred-citation:
+  authors:
+    - family-names: Key
+      given-names: Oscar
+      orcid: https://orcid.org/0009-0009-1357-471X
+    - family-names: Takao
+      given-names: So
+    - family-names: Giles
+      given-names: Daniel
+      orcid: https://orcid.org/0000-0002-3668-1851
+    - family-names: Deisenroth
+      given-names: Marc Peter
+      orcid: https://orcid.org/0000-0003-1503-680X
+  title: "Scalable Data Assimilation with Message Passing"
+  year: 2024
+  type: article
+  identifiers:
+      - type: other
+        value: "arXiv:2103.06681"
+        description: The ArXiv preprint of the paper
