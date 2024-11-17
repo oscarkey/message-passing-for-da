@@ -44,14 +44,8 @@ Unfortunately they depend on data from the Met Office's Unified Model which we a
 Thus, this code is for reference only.
 
 
-## Development tools
-- Format:
-  - `black **/*.py`
-  - `isort **/*.py`
-- Run tests: `pytest`
-- Run type checker:
-  - `mypy -p damp`
-  - `mypy src/experiments`
+## Contributions
+We welcome contributions to the repository, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 
 ## License
