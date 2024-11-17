@@ -1,4 +1,6 @@
 """Demonstrates 3D-Var on simulated data on a 2D rectangle."""
+
+from pathlib import Path
 from time import time
 
 import jax.random
@@ -41,7 +43,9 @@ def main() -> None:
         ax.set_xticks([])
         ax.set_yticks([])
     plt.tight_layout()
-    plt.savefig("plots/3dvar_demo.png", dpi=300)
+    plot_dir = Path("plots")
+    plot_dir.mkdir(exist_ok=True)
+    plt.savefig(plot_dir / "3dvar_demo.png", dpi=300)
     plt.close()
 
 

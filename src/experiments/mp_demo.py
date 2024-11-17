@@ -1,4 +1,7 @@
 """Demonstrates message passing (without multigrid) on simulated data."""
+
+from pathlib import Path
+
 import matplotlib.pyplot as plt
 from numpy.random import default_rng
 
@@ -42,7 +45,9 @@ def main() -> None:
         ax.set_yticks([])
 
     plt.tight_layout()
-    plt.savefig("plots/mp_demo.png", dpi=300)
+    plot_dir = Path("plots")
+    plot_dir.mkdir(exist_ok=True)
+    plt.savefig(plot_dir / "mp_demo.png", dpi=300)
     plt.close()
 
 

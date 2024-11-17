@@ -1,4 +1,7 @@
 """Demonstrates INLA on simulated data on a 2D rectangle."""
+
+from pathlib import Path
+
 import matplotlib.pyplot as plt
 from numpy.random import default_rng
 
@@ -24,8 +27,11 @@ def main() -> None:
     axes[1].imshow(pred_means.T, vmin=vmin, vmax=vmax)
     axes[2].imshow(pred_stds.T)
     obs_xs, obs_ys = zip(*[(x - 1, y - 1) for (x, y), val in obs], strict=True)
-    axes[2].scatter(obs_xs, obs_ys, color="red", s=1)
-    plt.savefig("plots/inla_demo.png")
+
+    plt.tight_layout()
+    plot_dir = Path("plots")
+    plot_dir.mkdir(exist_ok=True)
+    plt.savefig(plot_dir / "inla_demo.png")
     plt.close()
 
 
