@@ -33,7 +33,7 @@ You can either build it from `Dockerfile`, or use our pre-built image: [docker.i
 
 
 ## Experiments
-The results in the paper can be reproduced using v0.1.4.
+The results in the paper can be reproduced using v0.1.4 (archived at DOI [10.5281/zenodo.14176688](https://doi.org/10.5281/zenodo.14176688))
 
 To run an experiment: `python src/experiments/[script].py`, where `script` is:
 - Try out the methods on simulated data: `mp_demo.py`, `mp_multigrid_demo.py`, `threedvar_demo.py`, `inla_demo.py`
