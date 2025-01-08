@@ -50,5 +50,18 @@ Thus, this code is for reference only.
 We welcome contributions to the repository, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 
-## License
+## License and citation
 We release this code under the MIT license, see [LICENSE](LICENSE).
+
+If you use this code, please cite our paper:
+```
+@article{key2025scalable,
+  title   = {Scalable Data Assimilation with Message Passing},
+  author  = {Key, Oscar and Takao, So and Giles, Daniel and Deisenroth, Marc Peter},
+  year    = {2025},
+  journal = {Environmental Data Science},
+  volume  = {4},
+  pages   = {e1},
+  DOI     = {10.1017/eds.2024.47}
+}
+```
